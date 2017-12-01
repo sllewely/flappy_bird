@@ -41,27 +41,23 @@ public class BirdMovement_Translate : MonoBehaviour {
 	}
 
 	void moveBirdUp() {
-		move (0, moveSpeed, 0);
+		transform.Translate (Vector3.up * moveSpeed);
 	}
 
 	void moveBirdLeft() {
-		move (-moveSpeed, 0, 0);
+		transform.Translate (Vector3.left * moveSpeed);
 	}
 
 	void moveBirdRight() {
-		move (moveSpeed, 0, 0);
+		transform.Translate (Vector3.right * moveSpeed);
 	}
 
 	void moveBirdDown() {
-		move (0, -moveSpeed, 0);
+		transform.Translate (Vector3.down * moveSpeed);
 	}
 
 	void moveBirdRandom() {
-		move (randomFloat(), randomFloat(), randomFloat());
-	}
-
-	void move(float x, float y, float z) {
-		transform.position += new Vector3 (x, y, z);
+		transform.Translate(new Vector3 (randomFloat(), randomFloat(), randomFloat()));
 	}
 
 	float randomFloat() {

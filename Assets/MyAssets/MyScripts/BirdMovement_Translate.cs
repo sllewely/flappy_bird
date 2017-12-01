@@ -4,9 +4,11 @@ using UnityEngine;
 
 public class BirdMovement_Translate : MonoBehaviour {
 
+	public float moveSpeed;
+	public float fakeGravitySpeed;
+
 
 	private int health;
-	public float moveSpeed;
 	private bool isLightOn;
 	private string name = "Liana";
 
@@ -19,6 +21,9 @@ public class BirdMovement_Translate : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+
+		fakeGravity ();
+
 		if (Input.GetKey (KeyCode.UpArrow)) {
 			moveBirdUp ();
 		}
@@ -37,6 +42,7 @@ public class BirdMovement_Translate : MonoBehaviour {
 		if (Input.GetKeyDown (KeyCode.Space)) {
 			TestFire();
 		}
+
 
 	}
 
@@ -66,6 +72,10 @@ public class BirdMovement_Translate : MonoBehaviour {
 
 	void TestFire() {
 		Debug.Log ("beep");
+	}
+
+	void fakeGravity() {
+		transform.Translate (Vector3.down * fakeGravitySpeed);
 	}
 
 		

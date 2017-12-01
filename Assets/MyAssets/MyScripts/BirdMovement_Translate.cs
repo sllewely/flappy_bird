@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class BirdMovement_Translate : MonoBehaviour {
 
-	public float moveSpeed;
+	public float jumpForce;
 	public float fakeGravitySpeed;
 
 
@@ -24,17 +24,8 @@ public class BirdMovement_Translate : MonoBehaviour {
 
 		fakeGravity ();
 
-		if (Input.GetKey (KeyCode.UpArrow)) {
+		if (Input.GetKeyDown (KeyCode.UpArrow)) {
 			moveBirdUp ();
-		}
-		if (Input.GetKey (KeyCode.LeftArrow)) {
-			moveBirdLeft ();
-		}
-		if (Input.GetKey (KeyCode.RightArrow)) {
-			moveBirdRight ();
-		}
-		if (Input.GetKey (KeyCode.DownArrow)) {
-			moveBirdDown ();
 		}
 		if (Input.GetKey (KeyCode.R)) {
 			moveBirdRandom ();
@@ -47,19 +38,19 @@ public class BirdMovement_Translate : MonoBehaviour {
 	}
 
 	void moveBirdUp() {
-		transform.Translate (Vector3.up * moveSpeed);
+		transform.Translate (Vector3.up * jumpForce);
 	}
 
 	void moveBirdLeft() {
-		transform.Translate (Vector3.left * moveSpeed);
+		transform.Translate (Vector3.left * jumpForce);
 	}
 
 	void moveBirdRight() {
-		transform.Translate (Vector3.right * moveSpeed);
+		transform.Translate (Vector3.right * jumpForce);
 	}
 
 	void moveBirdDown() {
-		transform.Translate (Vector3.down * moveSpeed);
+		transform.Translate (Vector3.down * jumpForce);
 	}
 
 	void moveBirdRandom() {

@@ -11,6 +11,12 @@ public class BirdController : MonoBehaviour {
 	void Start () {
 		
 	}
+
+	void Update() {
+		if (transform.position.y < -5.5) {
+
+		}
+	}
 	
 	// Called a fixed number per time
 	// Used for physics

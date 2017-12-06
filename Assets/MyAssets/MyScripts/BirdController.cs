@@ -12,12 +12,21 @@ public class BirdController : MonoBehaviour {
 		
 	}
 	
-	// Update is called once per frame
-	void Update () {
+	// Called a fixed number per time
+	// Used for physics
+	void FixedUpdate () {
 
 		if (Input.GetKeyDown (KeyCode.Space)) {
-			myBirdsRigid.AddForce (Vector2.up * upForce);
+//			myBirdsRigid.AddForce (Vector2.up * upForce);
+			myBirdsRigid.velocity = (Vector2.up * upForce);
 		}
 		
+	}
+
+	void OnCollisionEnter2D(Collision2D objectBeingHit) {
+//		Destroy (gameObject);
+		Debug.Log ("I hit " + objectBeingHit.gameObject.name);
+
+		Destroy (gameObject);
 	}
 }

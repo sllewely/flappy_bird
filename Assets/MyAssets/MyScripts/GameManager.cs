@@ -7,9 +7,14 @@ public class GameManager : MonoBehaviour {
 	public GameObject birdPrefab;
 	public Transform birdSpawnLocation;
 
+	private GameObject birdClone;
+
+	// this is an instance of a script
+	public ObstacleSpawner ObstaclesSpawning;
+
 	// Use this for initialization
 	void Start () {
-		SpawnBird ();
+		
 	}
 	
 	// Update is called once per frame
@@ -17,10 +22,16 @@ public class GameManager : MonoBehaviour {
 		if (Input.GetMouseButtonDown (0)) {
 			SpawnBird ();
 		}
+
+		if (birdClone != null) {
+			ObstaclesSpawning.enabled = true;
+		} else {
+			ObstaclesSpawning.enabled = false;
+		}
 		
 	}
 
 	void SpawnBird() {
-		Instantiate (birdPrefab, birdSpawnLocation);
+		birdClone = Instantiate (birdPrefab, birdSpawnLocation);
 	}
 }

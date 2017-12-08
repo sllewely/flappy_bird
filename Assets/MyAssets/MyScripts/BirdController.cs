@@ -14,7 +14,7 @@ public class BirdController : MonoBehaviour {
 
 	void Update() {
 		if (transform.position.y < -5.5) {
-
+			Destroy (gameObject);
 		}
 	}
 	
@@ -30,9 +30,14 @@ public class BirdController : MonoBehaviour {
 	}
 
 	void OnCollisionEnter2D(Collision2D objectBeingHit) {
-//		Destroy (gameObject);
 		Debug.Log ("I hit " + objectBeingHit.gameObject.name);
 
 		Destroy (gameObject);
+	}
+
+	void OnTriggerEnter2D() {
+		GameObject thisIsGameLogicGameObject = GameObject.Find ("GameLogic");
+
+		thisIsGameLogicGameObject.BroadcastMessage ("AddPoints");
 	}
 }

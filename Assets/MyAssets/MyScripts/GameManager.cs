@@ -27,11 +27,18 @@ public class GameManager : MonoBehaviour {
 			ObstaclesSpawning.enabled = true;
 		} else {
 			ObstaclesSpawning.enabled = false;
+			DestroyObstacles ();
 		}
-		
 	}
 
 	void SpawnBird() {
 		birdClone = Instantiate (birdPrefab, birdSpawnLocation);
+	}
+
+	void DestroyObstacles() {
+		GameObject[] ObstaclesToBeDestroyed = GameObject.FindGameObjectsWithTag ("ObstacleTag");
+		foreach (GameObject obstacle in ObstaclesToBeDestroyed) {
+			Destroy (obstacle);
+		}
 	}
 }

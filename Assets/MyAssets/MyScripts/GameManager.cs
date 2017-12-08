@@ -13,6 +13,15 @@ public class GameManager : MonoBehaviour {
 	// this is an instance of a script
 	public ObstacleSpawner ObstaclesSpawning;
 
+	public GameObject startButton;
+	public Text scoreTextComponent;
+
+	private int _birdPoints = 0;
+	private float _buttonCooldown = 0;
+	public float desiredButtonCooldown;
+
+	bool isAlive = false;
+
 	// Use this for initialization
 	void Start () {
 		
@@ -20,20 +29,39 @@ public class GameManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (Input.GetMouseButtonDown (0)) {
-			SpawnBird ();
+
+		if (_buttonCooldown > 0) {
+			_buttonCooldown -= 1 * Time.deltaTime;
 		}
 
-		if (birdClone != null) {
-			ObstaclesSpawning.enabled = true;
-		} else {
-			ObstaclesSpawning.enabled = false;
-			DestroyObstacles ();
+		if (isAlive && birdClone == null) {
+			EndGame ();
 		}
 	}
 
-	void SpawnBird() {
-		birdClone = Instantiate (birdPrefab, birdSpawnLocation);
+	public void OnStartButtonPush() {
+		Debug.Log ("start button pressed");
+		if (_buttonCooldown > 0) {
+			return;
+		}
+
+		if (birdClone == null) {
+			_birdPoints = 0;
+			birdClone = Instantiate(birdPrefab, birdSpawnLocation);
+			startButton.SetActive(false);
+			ObstaclesSpawning.enabled = true;
+			isAlive = true;
+			scoreTextComponent.text =  _birdPoints.ToString();
+		}
+	}
+
+	void EndGame() {
+		Debug.Log ("End game");
+		_buttonCooldown = desiredButtonCooldown;
+		ObstaclesSpawning.enabled = false;
+		DestroyObstacles ();
+		isAlive = false;
+		startButton.SetActive(true);
 	}
 
 	void DestroyObstacles() {
@@ -41,5 +69,10 @@ public class GameManager : MonoBehaviour {
 		foreach (GameObject obstacle in ObstaclesToBeDestroyed) {
 			Destroy (obstacle);
 		}
+	}
+
+	void AddPoints() {
+		_birdPoints++;
+		scoreTextComponent.text = _birdPoints.ToString();
 	}
 }

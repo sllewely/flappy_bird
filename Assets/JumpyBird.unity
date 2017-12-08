@@ -278,6 +278,9 @@ MonoBehaviour:
   birdPrefab: {fileID: 1940012910546396, guid: 423686760fb30431695cd1bcef76773d, type: 2}
   birdSpawnLocation: {fileID: 648411210}
   ObstaclesSpawning: {fileID: 458634128}
+  startButton: {fileID: 1851663301}
+  scoreTextComponent: {fileID: 0}
+  desiredButtonCooldown: 3
 --- !u!4 &458634127
 Transform:
   m_ObjectHideFlags: 0
@@ -776,7 +779,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1851663304}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 458634126}
+        m_MethodName: OnStartButtonPush
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &1851663304
